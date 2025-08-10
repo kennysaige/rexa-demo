@@ -1,0 +1,38 @@
+{
+  "name": "Rexa - Medical Billing Assistant",
+  "short_name": "Rexa",
+  "description": "AI-Driven Medical Billing Assistant - Faster claims, fewer errors, more revenue",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B132B",
+  "theme_color": "#0B132B",
+  "orientation": "portrait",
+  "scope": "/",
+  "categories": ["medical", "business", "productivity"],
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMzIwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9IjEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIi8+PC9kZWZzPjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2xpbmVhckdyYWRpZW50MSkiLz48bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhckdyYWRpZW50MSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPjxzdG9wIHN0b3AtY29sb3I9IiMwQkZGQ0MiIG9mZnNldD0iMCUiLz48c3RvcCBzdG9wLWNvbG9yPSIjMDA5OUZGIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHdpZHRoPSIyNDAiIGhlaWdodD0iNjAiIHg9IjQwIiB5PSIxMDAiIHJ4PSIyMCIgZmlsbD0iIzBCRkZDQyIvPjx0ZXh0IHg9IjgwIiB5PSIxMzUiIGZpbGw9IiNmZmYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj5SOHhhPC90ZXh0Pjwvc3ZnPg==",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMTIgMzEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9IjEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTY9IjAlIi8+PC9kZWZzPjxyZWN0IHdpZHRoPSIzMTIiIGhlaWdodD0iMzEyIiBmaWxsPSJ1cmwoI2xpbmVhckdyYWRpZW50MSkiLz48bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhckdyYWRpZW50MSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPjxzdG9wIHN0b3AtY29sb3I9IiMwQkZGQ0MiIG9mZnNldD0iMCUiLz48c3RvcCBzdG9wLWNvbG9yPSIjMDA5OUZGIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHdpZHRoPSIyNDAiIGhlaWdodD0iNjAiIHg9IjM2IiB5PSIxMjYiIHJ4PSIyMCIgZmlsbD0iIzBCRkZDQyIvPjx0ZXh0IHg9IjE1NiIgeT0iMTYwIiBmaWxsPSIjZmZmIiBmb250LXNpemU9IjQ4IiBmb250LXdlaWdodD0iYm9sZCI+UjhuYTwvdGV4dD48L3N2Zz4=",
+      "sizes": "312x312",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9IjEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTY9IjAlIi8+PC9kZWZzPjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSJ1cmwoI2xpbmVhckdyYWRpZW50MSkiLz48bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhckdyYWRpZW50MSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPjxzdG9wIHN0b3AtY29sb3I9IiMwQkZGQ0MiIG9mZnNldD0iMCUiLz48c3RvcCBzdG9wLWNvbG9yPSIjMDA5OUZGIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHdpZHRoPSIzOTYiIGhlaWdodD0iNzkiIHg9IjU2IiB5PSIyMTciIHJ4PSIzMCIgZmlsbD0iIzBCRkZDQyIvPjx0ZXh0IHg9IjI1NiIgeT0iMjY0IiBmaWxsPSIjZmZmIiBmb250LXNpemU9Ijg2IiBmb250LXdlaWdodD0iYm9sZCI+UjhuYTwvdGV4dD48L3N2Zz4=",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzc1IiBoZWlnaHQ9IjgxMiIgdmlld0JveD0iMCAwIDM3NSA4MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNzUiIGhlaWdodD0iODEyIiBmaWxsPSIjRjhGOUZBIi8+CjxyZWN0IHdpZHRoPSIzNzUiIGhlaWdodD0iMTUwIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMF8xKSIvPgo8dGV4dCB4PSIyMCIgeT0iMTEwIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPlJleGEgRGFzaGJvYXJkPC90ZXh0Pgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzBfMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMzc1IiB5Mj0iMTUwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwQjEzMkIiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMUEyOTUxIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+",
+      "sizes": "375x812",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ]
+}

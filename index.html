@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rexa - Medical Billing Assistant</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0B132B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Rexa">
+    <meta name="description" content="AI-Driven Medical Billing Assistant - Faster claims, fewer errors, more revenue">
+    
+    <!-- PWA Icons -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlJleGEgLSBNZWRpY2FsIEJpbGxpbmcgQXNzaXN0YW50IiwKICAic2hvcnRfbmFtZSI6ICJSZXhhIiwKICAiZGVzY3JpcHRpb24iOiAiQUktRHJpdmVuIE1lZGljYWwgQmlsbGluZyBBc3Npc3RhbnQiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBCMTMyQiIsCiAgInRoZW1lX2NvbG9yIjogIiMwQjEzMkIiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFpwWlhkQ2IzZzlJakFnTUNBek1qQWdNekl3SWo0OFpHVm1jejQ4YkdsdVpXRnlSM0poWkdsbGJuUWdhV1E5SWpFaUlIaDFQU0l3SlNJZ2VURTlJakF3SlNJZ2VESTlJakV3TUNVaUlIa3lQU0l3SlNJdlBqd3ZaR1ZtY3o0OGNtVmpkQ0IzYVdSMGFEMGlNekl3SWlCb1pXbG5hSFE5SWpNeU1DSWdabWxzYkQwaWRYSnNLQ05zYVc1bFlYSkhjbUZrYVdWdWRERXBJaTgrUEd4cGJtVmhja2R5WVdScFpXNTBJR2xrUFNKc2FXNWxZWEpIY21Ga2FXVnVkREVpSUhneFBTSXdKU0lnZVRFOUlqQWxJaUI0TWowaU1UQXdKU0lnZVRJOUlqQWxJajQ4YzNSdmNDQnpkRzl3TFdOdmJHOXlQU0lqTURCR1JrTkRJaUJ2Wm1aelpYUTlJakFsSWk4K1BITjBiM0FnYzNSdmNDMWpiMnh2Y2owaUl6QXdPVGxHUmlJZ2IyWm1jMlYwUFNJeE1EQWxJaTgrUEM5c2FXNWxZWEpIY21Ga2FXVnVkRDQ4Y21WamRDQjNhV1IwYUQwaU1qUXdJaUJvWldsbmFIUTlJall3SWlCNFBTSTBNQ0lnZVQwaU1UQXdJaUJ5ZUQwaU1qQWlJR1pwYkd3OUlpTXdNRVpHUTBNaUx6NDhkR1Y0ZENCNFBTSTRNQ0lnZVQwaU1UTTFJaUJtYVd4c1BTSWpabVptSWlCbWIyNTBMWE5wZW1VOUlqSTBJaUJtYjI1MExYZGxhV2RvZEQwaVltOXNaQ0krVWpoNFlUd3ZkR1Y0ZEQ0OEwzTjJaejQ9IiwKICAgICAgInNpemVzIjogIjE5Mng5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0F6TVRJZ016RXlJajQ4WkdWbWN6NDhiR2x1WldGeVIzSmhaR2xsYm5RZ2FXUTlJakVpSUhoMVBTSXdKU0lnZVRFOUlqQXdKU0lnZURJOUlqRXdNQ1VpSUhrMlBTSXdKU0l2UGp3dlpHVm1jejQ4Y21WamRDQjNhV1IwYUQwaU16RXlJaUJvWldsbmFIUTlJak14TWlJZ1ptbHNiRDBpZFhKc0tDTnNhVzVsWVhKSGNtRmthV1Z1ZERFcElpOCtQR3hwYm1WaGNrZHlZV1JwWlc1MElHbGtQU0pzYVc1bFlYSkhjbUZrYVdWdWRERWlJSGcxUFNJd0pTSWdlVEU5SWpBbElpQjROajBpTVRBd0pTSWdlVFk5SWpBbElqNDhjM1J2Y0NCemRHOXdMV052Ykc5eVBTSWpNREJHUmtORElpQnZabVp6WlhROUlqQWxJaTgrUEhOMGIzQWdjM1J2Y0MxamIyeHZjajBpSXpBd09UbEdSaUlnYjJabWMyVjBQU0l4TURBbElpOCtQQzlzYVc1bFlYSkhjbUZrYVdWdWRENDhjbVZqZENCM2FXUjBhRDBpTWpRd0lpQm9aV2xuYUhROUlqWXdJaUI0UFNJek5qSWlJSGs5SWpFeU5pSWdjbmc5SWpJd0lpQm1hV3hzUFNJak1EQkdSa05ESWk4K1BIUmxlSFFnZUQwaU1UVTJJaUI1UFNJeE5qQWlJR1pwYkd3OUlpTm1abVlpSUdadmJuUXRjMmw2WlQwaU5EZ2lJR1p2Ym5RdGQyVnBaMmgwUFNKaWIyeGtJajVTT0hoaFBDOTBaWGgwUGp3dmMzWm5QZz09IiwKICAgICAgInNpemVzIjogIjMxMngzMTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFpwWlhkQ2IzZzlJakFnTUNBMU1USWdOVEV5SWo0OFpHVm1jejQ4YkdsdVpXRnlSM0poWkdsbGJuUWdhV1E5SWpFaUlIaDFQU0l3SlNJZ2VURTlJakF3SlNJZ2VESTlJakV3TUNVaUlIazJQU0l3SlNJdlBqd3ZaR1ZtY3o0OGNtVmpkQ0IzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdabWxzYkQwaWRYSnNLQ05zYVc1bFlYSkhjbUZrYVdWdWRERXBJaTgrUEd4cGJtVmhja2R5WVdScFpXNTBJR2xrUFNKc2FXNWxZWEpIY21Ga2FXVnVkREVpSUhnMVBTSXdKU0lnZVRVOUlqQWxJaUI0TmowaU1UQXdKU0lnZVRZOUlqQWxJajQ4YzNSdmNDQnpkRzl3TFdOdmJHOXlQU0lqTURCR1JrTkRJaUJ2Wm1aelpYUTlJakFsSWk4K1BITjBiM0FnYzNSdmNDMWpiMnh2Y2owaUl6QXdPVGxHUmlJZ2IyWm1jMlYwUFNJeE1EQWxJaTgrUEM5c2FXNWxZWEpIY21Ga2FXVnVkRDQ4Y21WamRDQjNhV1IwYUQwaU16azJJaUJvWldsbmFIUTlJamM1SWlCNFBTSTFOaUlnZVQwaU1qRTNJaUJ5ZUQwaU16QWlJR1pwYkd3OUlpTXdNRVpHUTBNaUx6NDhkR1Y0ZENCNFBTSXlOVFlpSUhrOUlqSTJOQ0lnWm1sc2JEMGlJMlptWmlJZ1ptOXVkQzF6YVhwbFBTSTROaUlnWm05dWRDMTNaV2xuYUhROUltSnZiR1FpUGxJNGVHRThMM1JsZUhRK1BDOXpkbWMrIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMTIgMzEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9IjEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIi8+PC9kZWZzPjxyZWN0IHdpZHRoPSIzMTIiIGhlaWdodD0iMzEyIiBmaWxsPSJ1cmwoI2xpbmVhckdyYWRpZW50MSkiLz48bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhckdyYWRpZW50MSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPjxzdG9wIHN0b3AtY29sb3I9IiMwQkZGQ0MiIG9mZnNldD0iMCUiLz48c3RvcCBzdG9wLWNvbG9yPSIjMDA5OUZGIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHdpZHRoPSIyNDAiIGhlaWdodD0iNjAiIHg9IjM2IiB5PSIxMjYiIHJ4PSIyMCIgZmlsbD0iIzBCRkZDQyIvPjx0ZXh0IHg9IjE1NiIgeT0iMTYwIiBmaWxsPSIjZmZmIiBmb250LXNpemU9IjQ4IiBmb250LXdlaWdodD0iYm9sZCI+UjhuYTwvdGV4dD48L3N2Zz4=">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        .mobile-frame {
+            max-width: 375px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0B132B 0%, #1a2951 100%);
+            padding: 50px 20px 20px 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00FFCC;
+        }
+
+        .notification-icon {
+            position: relative;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #FF4757;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .welcome-text {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .user-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #00FFCC;
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            padding: 20px;
+            margin-top: -30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .stat-trend {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .trend-up {
+            color: #00C851;
+        }
+
+        .trend-down {
+            color: #FF4757;
+        }
+
+        .stat-pending .stat-value {
+            color: #FFA502;
+        }
+
+        .stat-approved .stat-value {
+            color: #00C851;
+        }
+
+        .stat-denied .stat-value {
+            color: #FF4757;
+        }
+
+        .stat-revenue .stat-value {
+            color: #0099FF;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .action-button {
+            background: #f8f9fa;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .action-button:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .action-button.active {
+            background: linear-gradient(135deg, #00FFCC 0%, #0099FF 100%);
+            color: white;
+            border-color: #00FFCC;
+        }
+
+        .action-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .action-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Recent Claims */
+        .recent-claims {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .claims-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .view-all {
+            color: #0099FF;
+            font-size: 0.9rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .claim-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .claim-item:last-child {
+            border-bottom: none;
+        }
+
+        .claim-item:hover {
+            background: #f8f9fa;
+            margin: 0 -20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+        }
+
+        .claim-info {
+            flex: 1;
+        }
+
+        .claim-id {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .claim-patient {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .claim-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-approved {
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-processing {
+            background: #CCE7FF;
+            color: #004085;
+        }
+
+        .status-denied {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            background: linear-gradient(135deg, #00FFCC 0%, #0099FF 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-assistant::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .ai-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .ai-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .ai-suggestion {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        .ai-action {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ai-action:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 375px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            padding: 10px 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            text-align: center;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-width: 60px;
+        }
+
+        .nav-item.active {
+            background: #f0f8ff;
+            color: #0099FF;
+        }
+
+        .nav-icon {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            max-width: 320px;
+            width: 100%;
+            text-align: center;
+            animation: modalSlideUp 0.3s ease;
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00FFCC 0%, #0099FF 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .modal-text {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #00FFCC 0%, #0099FF 100%);
+            color: white;
+        }
+
+        .modal-btn-secondary {
+            background: #f8f9fa;
+            color: #666;
+            border: 1px solid #e9ecef;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Content padding for bottom nav */
+        .content-wrapper {
+            padding-bottom: 90px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .stat-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .stat-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <div class="logo">Rexa</div>
+                <div class="notification-icon" onclick="showNotifications()">
+                    🔔
+                    <span class="notification-badge">3</span>
+                </div>
+            </div>
+            <div class="welcome-text">Good morning,</div>
+            <div class="user-name">Dr. Sarah Chen</div>
+        </div>
+
+        <div class="content-wrapper">
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stats-grid">
+                    <div class="stat-card stat-pending">
+                        <div class="stat-value">24</div>
+                        <div class="stat-label">Pending Claims</div>
+                        <div class="stat-trend trend-down">↓ 12% this week</div>
+                    </div>
+                    <div class="stat-card stat-approved">
+                        <div class="stat-value">156</div>
+                        <div class="stat-label">Approved</div>
+                        <div class="stat-trend trend-up">↑ 8% this week</div>
+                    </div>
+                    <div class="stat-card stat-denied">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Denied Claims</div>
+                        <div class="stat-trend trend-down">↓ 3% this week</div>
+                    </div>
+                    <div class="stat-card stat-revenue">
+                        <div class="stat-value">$47K</div>
+                        <div class="stat-label">Revenue</div>
+                        <div class="stat-trend trend-up">↑ 15% this month</div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <div class="section-title">Quick Actions</div>
+                    <div class="actions-grid">
+                        <button class="action-button" onclick="newClaim()">
+                            <span class="action-icon">📝</span>
+                            <span class="action-label">New Claim</span>
+                        </button>
+                        <button class="action-button active" onclick="scanCode()">
+                            <span class="action-icon">🔍</span>
+                            <span class="action-label">Code Search</span>
+                        </button>
+                        <button class="action-button" onclick="generateReport()">
+                            <span class="action-icon">📊</span>
+                            <span class="action-label">Reports</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI Assistant -->
+                <div class="ai-assistant">
+                    <div class="ai-header">
+                        <div class="ai-icon">🤖</div>
+                        <div class="ai-title">AI Assistant</div>
+                    </div>
+                    <div class="ai-suggestion">
+                        I noticed 3 claims from this week have high denial risk. Would you like me to review and suggest corrections?
+                    </div>
+                    <button class="ai-action" onclick="reviewClaims()">Review Claims</button>
+                </div>
+
+                <!-- Recent Claims -->
+                <div class="recent-claims">
+                    <div class="claims-header">
+                        <div class="section-title">Recent Claims</div>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    
+                    <div class="claim-item" onclick="viewClaim('CLM-2024-0891')">
+                        <div class="claim-info">
+                            <div class="claim-id">CLM-2024-0891</div>
+                            <div class="claim-patient">Sarah Johnson • 99213</div>
+                        </div>
+                        <div class="claim-status status-approved">Approved</div>
+                    </div>
+                    
+                    <div class="claim-item" onclick="viewClaim('CLM-2024-0892')">
+                        <div class="claim-info">
+                            <div class="claim-id">CLM-2024-0892</div>
+                            <div class="claim-patient">Mike Thompson • 99214</div>
+                        </div>
+                        <div class="claim-status status-processing">Processing</div>
+                    </div>
+                    
+                    <div class="claim-item" onclick="viewClaim('CLM-2024-0893')">
+                        <div class="claim-info">
+                            <div class="claim-id">CLM-2024-0893</div>
+                            <div class="claim-patient">Lisa Davis • 99212</div>
+                        </div>
+                        <div class="claim-status status-pending">Pending</div>
+                    </div>
+                    
+                    <div class="claim-item" onclick="viewClaim('CLM-2024-0894')">
+                        <div class="claim-info">
+                            <div class="claim-id">CLM-2024-0894</div>
+                            <div class="claim-patient">John Martinez • 99395</div>
+                        </div>
+                        <div class="claim-status status-denied">Denied</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-items">
+                <div class="nav-item active" onclick="switchTab('dashboard')">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Dashboard</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('claims')">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-label">Claims</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Analytics</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('profile')">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-label">Profile</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="actionModal">
+        <div class="modal-content">
+            <div class="modal-icon" id="modalIcon">✨</div>
+            <div class="modal-title" id="modalTitle">Action Complete</div>
+            <div class="modal-text" id="modalText">Your action has been processed successfully.</div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal()">Close</button>
+                <button class="modal-btn modal-btn-primary" onclick="closeModal()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive functionality
+        function showNotifications() {
+            showModal('🔔', 'Notifications', 'You have 3 new updates:\n• Claim CLM-2024-0891 approved\n• Payment received: $180.00\n• AI found potential denial risk');
+        }
+
+        function newClaim() {
+            showModal('📝', 'New Claim', 'Starting new claim submission process. AI will help validate codes and check for potential issues.');
+            setTimeout(() => {
+                document.querySelector('.stat-pending .stat-value').textContent = '25';
+                document.querySelector('.stat-pending .stat-trend').innerHTML = '↓ 10% this week';
+            }, 2000);
+        }
+
+        function scanCode() {
+            showModal('🔍', 'Smart Code Search', 'AI is analyzing your procedure codes and suggesting optimizations. Found 3 potential improvements.');
+        }
+
+        function generateReport() {
+            showModal('📊', 'Generating Report', 'Creating comprehensive revenue analysis report. This includes denial trends, payment cycles, and optimization opportunities.');
+        }
+
+        function reviewClaims() {
+            showModal('🤖', 'AI Review Complete', 'Reviewed 3 high-risk claims:\n• CLM-2024-0895: Missing modifier -25\n• CLM-2024-0896: Incorrect ICD-10 code\n• CLM-2024-0897: Prior auth required');
+            
+            // Update stats after AI review
+            setTimeout(() => {
+                document.querySelector('.stat-denied .stat-value').textContent = '5';
+                document.querySelector('.stat-denied .stat-trend').innerHTML = '↓ 6% this week';
+                document.querySelector('.stat-denied .stat-trend').className = 'stat-trend trend-down';
+            }, 2000);
+        }
+
+        function viewClaim(claimId) {
+            showModal('📋', `Claim ${claimId}`, `Viewing detailed information for claim ${claimId}. Status tracking, payment history, and AI insights available.`);
+        }
+
+        function switchTab(tab) {
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked item
+            event.target.closest('.nav-item').classList.add('active');
+            
+            // Show different content based on tab
+            let message = '';
+            let icon = '';
+            switch(tab) {
+                case 'dashboard':
+                    return; // Already on dashboard
+                case 'claims':
+                    icon = '📋';
+                    message = 'Viewing all claims with advanced filtering, bulk actions, and real-time status updates.';
+                    break;
+                case 'analytics':
+                    icon = '📊';
+                    message = 'Advanced analytics dashboard showing revenue trends, denial patterns, and performance metrics.';
+                    break;
+                case 'profile':
+                    icon = '👤';
+                    message = 'User profile settings, billing preferences, and account management options.';
+                    break;
+            }
+            showModal(icon, `${tab.charAt(0).toUpperCase() + tab.slice(1)}`, message);
+        }
+
+        function showModal(icon, title, text) {
+            document.getElementById('modalIcon').textContent = icon;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalText').textContent = text;
+            document.getElementById('actionModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('actionModal').classList.remove('active');
+        }
+
+        // Click outside modal to close
+        document.getElementById('actionModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Simulate real-time updates
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                // Randomly update notification badge
+                const badge = document.querySelector('.notification-badge');
+                const currentCount = parseInt(badge.textContent);
+                if (Math.random() > 0.9) { // 10% chance every 3 seconds
+                    badge.textContent = currentCount + 1;
+                    
+                    // Flash animation
+                    badge.style.animation = 'none';
+                    setTimeout(() => {
+                        badge.style.animation = 'pulse 0.5s ease';
+                    }, 10);
+                }
+            }, 3000);
+        }
+
+        // Add pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.2); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Start real-time simulation
+        simulateRealTimeUpdates();
+
+        // PWA Installation
+        let deferredPrompt;
+        let installButton;
+
+        // Create install button
+        function createInstallButton() {
+            installButton = document.createElement('div');
+            installButton.innerHTML = `
+                <div style="
+                    position: fixed;
+                    bottom: 100px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #00FFCC 0%, #0099FF 100%);
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 25px;
+                    box-shadow: 0 4px 20px rgba(0, 255, 204, 0.4);
+                    cursor: pointer;
+                    font-weight: 600;
+                    font-size: 14px;
+                    z-index: 1000;
+                    animation: bounceIn 0.5s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                " onclick="installPWA()">
+                    📱 Install App
+                </div>
+            `;
+            document.body.appendChild(installButton);
+        }
+
+        // PWA install prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            createInstallButton();
+        });
+
+        // Install PWA function
+        window.installPWA = async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    showModal('🎉', 'App Installed!', 'Rexa has been installed on your device. You can now access it from your home screen.');
+                    if (installButton) {
+                        installButton.remove();
+                    }
+                }
+                deferredPrompt = null;
+            }
+        };
+
+        // Handle app installation
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+            if (installButton) {
+                installButton.remove();
+            }
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `
+                    const CACHE_NAME = 'rexa-v1';
+                    const urlsToCache = [
+                        '/',
+                        '/index.html'
+                    ];
+
+                    self.addEventListener('install', (event) => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then((cache) => cache.addAll(urlsToCache))
+                        );
+                    });
+
+                    self.addEventListener('fetch', (event) => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then((response) => {
+                                    if (response) {
+                                        return response;
+                                    }
+                                    return fetch(event.request);
+                                })
+                        );
+                    });
+                `;
+
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+
+                navigator.serviceWorker.register(swUrl)
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Add bounce animation
+        const bounceStyle = document.createElement('style');
+        bounceStyle.textContent = `
+            @keyframes bounceIn {
+                0% {
+                    transform: scale(0.3);
+                    opacity: 0;
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+                70% {
+                    transform: scale(0.9);
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(bounceStyle);
+
+        // Add hover effects for better interactivity
+        document.querySelectorAll('.action-button, .claim-item, .nav-item').forEach(element => {
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            element.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
